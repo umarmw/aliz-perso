@@ -249,34 +249,34 @@
       src="//cdn.evgnet.com/beacon/hangarworldwide/engage/scripts/evergage.min.js"
     ></script>
     <script type="text/javascript">
-      function setCookie(cname, cvalue, exdays) {
-        const d = new Date();
-        d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-        let expires = "expires=" + d.toUTCString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-      }
+    //   function setCookie(cname, cvalue, exdays) {
+    //     const d = new Date();
+    //     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+    //     let expires = "expires=" + d.toUTCString();
+    //     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    //   }
 
-      function getCookie(cname) {
-        let name = cname + "=";
-        let ca = document.cookie.split(";");
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i];
-          while (c.charAt(0) == " ") {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-      }
+    //   function getCookie(cname) {
+    //     let name = cname + "=";
+    //     let ca = document.cookie.split(";");
+    //     for (let i = 0; i < ca.length; i++) {
+    //       let c = ca[i];
+    //       while (c.charAt(0) == " ") {
+    //         c = c.substring(1);
+    //       }
+    //       if (c.indexOf(name) == 0) {
+    //         return c.substring(name.length, c.length);
+    //       }
+    //     }
+    //     return "";
+    //   }
 
-      let perso = getCookie("perso");
-      if (perso != "") {
-        console.log("perso from cookie: ", perso);
-      } else {
-        setCookie("perso", "user@perso.com", 365);
-      }
+    //   let perso = getCookie("perso");
+    //   if (perso != "") {
+    //     console.log("perso from cookie: ", perso);
+    //   } else {
+    //     setCookie("perso", "user@perso.com", 365);
+    //   }
     </script>
   </head>
   <body>
