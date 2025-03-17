@@ -250,29 +250,61 @@
     ></script>
 
     <script>
-        (function waitForEvergage() {
-          if (typeof Evergage !== "undefined" && typeof Evergage.init === "function") {
-            Evergage.init({
-              global: {
-                account: "hangarworldwide",
-                dataset: "engage"
-              }
-            }).then(() => {
+      (function waitForEvergage() {
+        if (
+          typeof Evergage !== "undefined" &&
+          typeof Evergage.init === "function"
+        ) {
+          Evergage.init({
+            global: {
+              account: "hangarworldwide",
+              dataset: "engage",
+            },
+            pageTypeDefault: {
+              name: "default",
+              interaction: {
+                name: "Default Page",
+              },
+            },
+            pageTypes: [
+              {
+                name: "Homepage",
+                isMatch: () => /^\/$/.test(window.location.pathname), // Detect homepage
+                interaction: {
+                  name: "Homepage",
+                },
+                contentZones: [
+                  { name: "home_hero", selector: "#hero" },
+                  { name: "home_featured", selector: "#features" },
+                  { name: "home_coverage", selector: "#coverage" },
+                ],
+              },
+              {
+                name: "Login_Page",
+                isMatch: () =>
+                  /^\/account\/$/.test(window.location.pathname) &&
+                  window.location.hash === "#/loginPage",
+                interaction: {
+                  name: "Login_Page",
+                },
+              },
+            ],
+          })
+            .then(() => {
               console.log("Evergage initialized!");
-              
+
               // Send page view event after initialization
               Evergage.sendEvent({
-                action: "PageView"
+                action: "PageView",
               });
-            }).catch(err => console.error("Evergage init failed:", err));
-          } else {
-            console.warn("Waiting for Evergage to load...");
-            setTimeout(waitForEvergage, 100);
-          }
-        })();
-      </script>
-
-
+            })
+            .catch((err) => console.error("Evergage init failed:", err));
+        } else {
+          console.warn("Waiting for Evergage to load...");
+          setTimeout(waitForEvergage, 100);
+        }
+      })();
+    </script>
   </head>
   <body>
     <header>
@@ -287,7 +319,7 @@
       </div>
     </header>
 
-    <section class="hero">
+    <section class="hero" id="hero">
       <h1>Allianz Direct Car Insurance</h1>
       <p>
         Complete coverage, 24/7 assistance, and competitive prices for your
@@ -454,17 +486,19 @@
       </div>
     </footer>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          document.getElementById("myButton")?.addEventListener("click", function () {
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("myButton")
+          ?.addEventListener("click", function () {
             Evergage.sendEvent({
               action: "ButtonClick",
               attributes: {
-                name: "CTA Button"
-              }
+                name: "CTA Button",
+              },
             });
             console.log("ButtonClick event sent!");
           });
-        });
-      </script>
+      });
+    </script>
   </body>
 </html>
