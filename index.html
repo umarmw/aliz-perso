@@ -248,29 +248,30 @@
       type="text/javascript"
       src="//cdn.evgnet.com/beacon/hangarworldwide/engage/scripts/evergage.min.js"
     ></script>
-    <script>
-      window.EvergageInit =
-        window.EvergageInit ||
-        function () {
-          return {
-            config: {
-              account: "hangarworldwide", // Your Salesforce Interaction Studio account name
-              dataset: "engage", // The dataset where user interactions are stored
-            },
-          };
-        };
-    </script>
 
     <script>
-      (function waitForEvergage() {
-        if (typeof Evergage !== "undefined") {
-          Evergage.init(EvergageInit());
-          console.log("Evergage initialized!");
-        } else {
-          setTimeout(waitForEvergage, 100);
-        }
-      })();
-    </script>
+        (function waitForEvergage() {
+          if (typeof Evergage !== "undefined" && typeof Evergage.init === "function") {
+            Evergage.init({
+              config: {
+                account: "hangarworldwide",
+                dataset: "engage"
+              }
+            }).then(() => {
+              console.log("Evergage initialized!");
+              Evergage.getGlobalContext().then(() => {
+                Evergage.sendEvent({
+                  action: "PageView"
+                });
+              });
+            }).catch(err => console.error("Evergage init failed:", err));
+          } else {
+            setTimeout(waitForEvergage, 100);
+          }
+        })();
+      </script>
+
+
   </head>
   <body>
     <header>
@@ -452,17 +453,14 @@
       </div>
     </footer>
     <script>
-      Evergage.init(EvergageInit()).then(() => {
-        Evergage.trackAction("PageView");
-      });
-    </script>
-
-    <script>
-      document
-        .getElementById("myButton")
-        .addEventListener("click", function () {
-          Evergage.trackAction("ButtonClick", { name: "CTA Button" });
+        document.getElementById("myButton")?.addEventListener("click", function () {
+          Evergage.sendEvent({
+            action: "ButtonClick",
+            attributes: {
+              name: "CTA Button"
+            }
+          });
         });
-    </script>
+      </script>
   </body>
 </html>
