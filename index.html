@@ -245,66 +245,14 @@
       }
     </style>
     <script
-      type="text/javascript"
-      src="//cdn.evgnet.com/beacon/hangarworldwide/engage/scripts/evergage.min.js"
+        type="text/javascript"
+        src="//cdn.evgnet.com/beacon/hangarworldwide/engage/scripts/evergage.min.js"
     ></script>
 
-    <!-- <script>
-      (function waitForEvergage() {
-        if (
-          typeof Evergage !== "undefined" &&
-          typeof Evergage.init === "function"
-        ) {
-          Evergage.init({
-            global: {
-              account: "hangarworldwide",
-              dataset: "engage",
-            },
-            pageTypeDefault: {
-              name: "default",
-              interaction: {
-                name: "Default Page",
-              },
-            },
-            pageTypes: [
-              {
-                name: "Homepage",
-                isMatch: () => /^\/$/.test(window.location.pathname), // Detect homepage
-                interaction: {
-                  name: "Homepage",
-                },
-                contentZones: [
-                  { name: "home_hero", selector: "#hero" },
-                  { name: "home_featured", selector: "#features" },
-                  { name: "home_coverage", selector: "#coverage" },
-                ],
-              },
-              {
-                name: "Login_Page",
-                isMatch: () =>
-                  /^\/account\/$/.test(window.location.pathname) &&
-                  window.location.hash === "#/loginPage",
-                interaction: {
-                  name: "Login_Page",
-                },
-              },
-            ],
-          })
-            .then(() => {
-              console.log("Evergage initialized!");
-
-              // Send page view event after initialization
-              Evergage.sendEvent({
-                action: "PageView",
-              });
-            })
-            .catch((err) => console.error("Evergage init failed:", err));
-        } else {
-          console.warn("Waiting for Evergage to load...");
-          setTimeout(waitForEvergage, 100);
-        }
-      })();
-    </script> -->
+    <script>
+        console.log(window.Evergage);
+        console.log(window.sfmcInteractionStudio);
+    </script>
   </head>
   <body>
     <header>
