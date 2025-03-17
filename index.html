@@ -248,35 +248,28 @@
       type="text/javascript"
       src="//cdn.evgnet.com/beacon/hangarworldwide/engage/scripts/evergage.min.js"
     ></script>
-    <script type="text/javascript">
-    //   function setCookie(cname, cvalue, exdays) {
-    //     const d = new Date();
-    //     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-    //     let expires = "expires=" + d.toUTCString();
-    //     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-    //   }
+    <script>
+      window.EvergageInit =
+        window.EvergageInit ||
+        function () {
+          return {
+            config: {
+              account: "hangarworldwide", // Your Salesforce Interaction Studio account name
+              dataset: "engage", // The dataset where user interactions are stored
+            },
+          };
+        };
+    </script>
 
-    //   function getCookie(cname) {
-    //     let name = cname + "=";
-    //     let ca = document.cookie.split(";");
-    //     for (let i = 0; i < ca.length; i++) {
-    //       let c = ca[i];
-    //       while (c.charAt(0) == " ") {
-    //         c = c.substring(1);
-    //       }
-    //       if (c.indexOf(name) == 0) {
-    //         return c.substring(name.length, c.length);
-    //       }
-    //     }
-    //     return "";
-    //   }
-
-    //   let perso = getCookie("perso");
-    //   if (perso != "") {
-    //     console.log("perso from cookie: ", perso);
-    //   } else {
-    //     setCookie("perso", "user@perso.com", 365);
-    //   }
+    <script>
+      (function waitForEvergage() {
+        if (typeof Evergage !== "undefined") {
+          Evergage.init(EvergageInit());
+          console.log("Evergage initialized!");
+        } else {
+          setTimeout(waitForEvergage, 100);
+        }
+      })();
     </script>
   </head>
   <body>
@@ -298,7 +291,7 @@
         Complete coverage, 24/7 assistance, and competitive prices for your
         vehicle. Save up to 40% on your car insurance policy.
       </p>
-      <button class="cta-button">Calculate Your Quote</button>
+      <button class="cta-button" id="myButton">Calculate Your Quote</button>
     </section>
 
     <section class="features" id="features">
@@ -458,5 +451,18 @@
         </p>
       </div>
     </footer>
+    <script>
+      Evergage.init(EvergageInit()).then(() => {
+        Evergage.trackAction("PageView");
+      });
+    </script>
+
+    <script>
+      document
+        .getElementById("myButton")
+        .addEventListener("click", function () {
+          Evergage.trackAction("ButtonClick", { name: "CTA Button" });
+        });
+    </script>
   </body>
 </html>
