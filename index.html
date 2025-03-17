@@ -253,19 +253,20 @@
         (function waitForEvergage() {
           if (typeof Evergage !== "undefined" && typeof Evergage.init === "function") {
             Evergage.init({
-              config: {
+              global: {
                 account: "hangarworldwide",
                 dataset: "engage"
               }
             }).then(() => {
               console.log("Evergage initialized!");
-              Evergage.getGlobalContext().then(() => {
-                Evergage.sendEvent({
-                  action: "PageView"
-                });
+              
+              // Send page view event after initialization
+              Evergage.sendEvent({
+                action: "PageView"
               });
             }).catch(err => console.error("Evergage init failed:", err));
           } else {
+            console.warn("Waiting for Evergage to load...");
             setTimeout(waitForEvergage, 100);
           }
         })();
@@ -453,12 +454,15 @@
       </div>
     </footer>
     <script>
-        document.getElementById("myButton")?.addEventListener("click", function () {
-          Evergage.sendEvent({
-            action: "ButtonClick",
-            attributes: {
-              name: "CTA Button"
-            }
+        document.addEventListener("DOMContentLoaded", function () {
+          document.getElementById("myButton")?.addEventListener("click", function () {
+            Evergage.sendEvent({
+              action: "ButtonClick",
+              attributes: {
+                name: "CTA Button"
+              }
+            });
+            console.log("ButtonClick event sent!");
           });
         });
       </script>
