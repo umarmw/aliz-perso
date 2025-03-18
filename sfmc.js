@@ -1,4 +1,4 @@
-function getCookie(name) {
+function getConsentCookie(name) {
     const cookies = document.cookie.split("; ");
     for (let cookie of cookies) {
         let [key, value] = cookie.split("=");
@@ -9,7 +9,7 @@ function getCookie(name) {
     return null;
 }
 
-const cookieConsent = getCookie("cookieConsent");
+const cookieConsent = getConsentCookie("cookieConsent");
 let cookieEssential;
 let cookieAnalytics;
 let cookiePersonalization;
