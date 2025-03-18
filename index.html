@@ -17,6 +17,31 @@
         line-height: 1.6;
         color: #333;
       }
+      /* cookie consent */
+      .hidden {
+        display: none;
+      }
+      .fixed {
+        position: fixed;
+      }
+      .bottom-5 {
+        bottom: 20px;
+      }
+      .left-5 {
+        left: 20px;
+      }
+      .bg-white {
+        background-color: white;
+      }
+      .p-4 {
+        padding: 16px;
+      }
+      .shadow-lg {
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      }
+      .rounded-md {
+        border-radius: 8px;
+      }
 
       /* Header styles */
       header {
@@ -248,8 +273,33 @@
       type="text/javascript"
       src="//cdn.evgnet.com/beacon/hangarworldwide/engage/scripts/evergage.min.js"
     ></script>
+    <script
+      async
+      src="https://cdn.c360a.salesforce.com/web-sdk/latest/web-sdk.min.js"
+    ></script>
   </head>
   <body>
+    <div
+      id="cookie-consent"
+      class="fixed bottom-5 left-5 bg-white p-4 shadow-lg rounded-md hidden"
+    >
+      <p>
+        This website uses cookies to improve your experience. Do you accept?
+      </p>
+      <button
+        id="accept-cookies"
+        class="bg-blue-500 text-white px-3 py-1 rounded"
+      >
+        Accept
+      </button>
+      <button
+        id="reject-cookies"
+        class="bg-gray-300 text-black px-3 py-1 rounded"
+      >
+        Decline
+      </button>
+    </div>
+
     <header>
       <div class="logo-container">
         <div class="logo">Allianz Direct</div>
@@ -428,5 +478,47 @@
         </p>
       </div>
     </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const consentBox = document.getElementById("cookie-consent");
+        const acceptBtn = document.getElementById("accept-cookies");
+        const rejectBtn = document.getElementById("reject-cookies");
+
+        function initializeEvergage() {
+          if (typeof Evergage !== "undefined") {
+            Evergage.init({
+              cookieDomain: "stately-dragon-717d36.netlify.app",
+              trackingServer: "cdn.evgnet.com",
+              account: "hangarworldwide",
+              dataset: "engage",
+            });
+          }
+        }
+
+        // Check user consent
+        const consent = localStorage.getItem("cookieConsent");
+
+        if (consent === "accepted") {
+          initializeEvergage(); // Start Evergage tracking if consent is given
+        } else if (!consent) {
+          consentBox.classList.remove("hidden");
+        }
+
+        // Accept Cookies
+        acceptBtn.addEventListener("click", function () {
+          localStorage.setItem("cookieConsent", "accepted");
+          C360A.push(["setConsent", { consentGranted: true }]); // Salesforce consent method
+          initializeEvergage(); // Start tracking after consent
+          consentBox.classList.add("hidden");
+        });
+
+        // Reject Cookies
+        rejectBtn.addEventListener("click", function () {
+          localStorage.setItem("cookieConsent", "rejected");
+          C360A.push(["setConsent", { consentGranted: false }]); // Disable tracking
+          consentBox.classList.add("hidden");
+        });
+      });
+    </script>
   </body>
 </html>
