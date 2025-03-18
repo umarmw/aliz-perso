@@ -4,302 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Allianz Direct - Vehicle Insurance</title>
-    <style>
-      /* Reset and base styles */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Arial", sans-serif;
-      }
-
-      body {
-        line-height: 1.6;
-        color: #333;
-      }
-      /* cookie consent */
-      .hidden {
-        display: none;
-      }
-      .fixed {
-        position: fixed;
-      }
-      .bottom-5 {
-        bottom: 20px;
-      }
-      .left-5 {
-        left: 20px;
-      }
-      .bg-white {
-        background-color: white;
-      }
-      .p-4 {
-        padding: 16px;
-      }
-      .shadow-lg {
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-      }
-      .rounded-md {
-        border-radius: 8px;
-      }
-
-      /* Header styles */
-      header {
-        background-color: #003781;
-        color: white;
-        padding: 1rem;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-
-      .logo-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-      }
-
-      .navigation {
-        display: flex;
-        gap: 1.5rem;
-      }
-
-      .navigation a {
-        color: white;
-        text-decoration: none;
-        font-weight: 500;
-      }
-
-      /* Hero section */
-      .hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-          url("/images/866-1200x500.jpg") center/cover;
-        height: 400px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: white;
-        padding: 1rem;
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .hero p {
-        font-size: 1.2rem;
-        max-width: 800px;
-        margin-bottom: 2rem;
-      }
-
-      .cta-button {
-        background-color: #ff6200;
-        color: white;
-        border: none;
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-        font-weight: bold;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
-
-      .cta-button:hover {
-        background-color: #e55a00;
-      }
-
-      /* Features section */
-      .features {
-        padding: 3rem 1rem;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .section-title {
-        text-align: center;
-        margin-bottom: 2rem;
-        color: #003781;
-      }
-
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-      }
-
-      .feature-card {
-        background-color: #f9f9f9;
-        padding: 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s;
-      }
-
-      .feature-card:hover {
-        transform: translateY(-5px);
-      }
-
-      .feature-card h3 {
-        color: #003781;
-        margin-bottom: 1rem;
-      }
-
-      /* Coverage section */
-      .coverage {
-        background-color: #f0f7ff;
-        padding: 3rem 1rem;
-      }
-
-      .coverage-content {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .coverage-options {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-
-      .coverage-option {
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-
-      .coverage-option h3 {
-        color: #003781;
-        margin-bottom: 0.5rem;
-      }
-
-      /* Testimonials */
-      .testimonials {
-        padding: 3rem 1rem;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .testimonial-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-      }
-
-      .testimonial-card {
-        background-color: #f9f9f9;
-        padding: 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        position: relative;
-      }
-
-      .testimonial-card p {
-        font-style: italic;
-        margin-bottom: 1rem;
-      }
-
-      .testimonial-author {
-        font-weight: bold;
-        color: #003781;
-      }
-
-      /* Footer */
-      footer {
-        background-color: #003781;
-        color: white;
-        padding: 2rem 1rem;
-      }
-
-      .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-      }
-
-      .footer-content h3 {
-        margin-bottom: 1rem;
-      }
-
-      .footer-content ul {
-        list-style: none;
-      }
-
-      .footer-content ul li {
-        margin-bottom: 0.5rem;
-      }
-
-      .footer-content a {
-        color: #ccc;
-        text-decoration: none;
-      }
-
-      .footer-content a:hover {
-        color: white;
-      }
-
-      .footer-bottom {
-        text-align: center;
-        padding-top: 2rem;
-        color: #ccc;
-        font-size: 0.9rem;
-      }
-
-      /* Responsive adjustments */
-      @media (max-width: 768px) {
-        .navigation {
-          display: none;
-        }
-
-        .hero h1 {
-          font-size: 2rem;
-        }
-
-        .hero p {
-          font-size: 1rem;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="global.css" />
     <script
       type="text/javascript"
       src="//cdn.evgnet.com/beacon/hangarworldwide/engage/scripts/evergage.min.js"
     ></script>
-    <script
-      async
-      src="https://cdn.c360a.salesforce.com/web-sdk/latest/web-sdk.min.js"
-    ></script>
   </head>
   <body>
-    <div
-      id="cookie-consent"
-      class="fixed bottom-5 left-5 bg-white p-4 shadow-lg rounded-md hidden"
-    >
-      <p>
-        This website uses cookies to improve your experience. Do you accept?
-      </p>
-      <button
-        id="accept-cookies"
-        class="bg-blue-500 text-white px-3 py-1 rounded"
-      >
-        Accept
-      </button>
-      <button
-        id="reject-cookies"
-        class="bg-gray-300 text-black px-3 py-1 rounded"
-      >
-        Decline
-      </button>
-    </div>
-
     <header>
       <div class="logo-container">
         <div class="logo">Allianz Direct</div>
@@ -478,47 +189,103 @@
         </p>
       </div>
     </footer>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const consentBox = document.getElementById("cookie-consent");
-        const acceptBtn = document.getElementById("accept-cookies");
-        const rejectBtn = document.getElementById("reject-cookies");
 
-        function initializeEvergage() {
-          if (typeof Evergage !== "undefined") {
-            Evergage.init({
-              cookieDomain: "stately-dragon-717d36.netlify.app",
-              trackingServer: "cdn.evgnet.com",
-              account: "hangarworldwide",
-              dataset: "engage",
-            });
-          }
-        }
+    <!-- Cookie Consent Modal -->
+    <div class="cookie-consent-modal" id="cookieConsentModal">
+      <h2>Cookie Consent</h2>
+      <p>
+        We use cookies to enhance your experience on our website. These cookies
+        are used for essential website functionality, analytics, and
+        personalization through Salesforce. By clicking "Accept All", you
+        consent to the use of all cookies. You can also manage your preferences
+        by clicking "Customize Settings".
+      </p>
+      <div class="button-group">
+        <button class="button secondary-button" id="customizeButton">
+          Customize Settings
+        </button>
+        <button class="button primary-button" id="acceptAllButton">
+          Accept All
+        </button>
+      </div>
+    </div>
 
-        // Check user consent
-        const consent = localStorage.getItem("cookieConsent");
+    <!-- Cookie Preferences Modal -->
+    <div class="cookie-preferences-modal" id="cookiePreferencesModal">
+      <div class="preferences-content">
+        <h2>Cookie Preferences</h2>
+        <p>
+          Manage your cookie preferences below. Essential cookies are always
+          enabled as they are necessary for the website to function properly.
+        </p>
 
-        if (consent === "accepted") {
-          initializeEvergage(); // Start Evergage tracking if consent is given
-        } else if (!consent) {
-          consentBox.classList.remove("hidden");
-        }
+        <div class="cookie-category">
+          <h3>
+            Essential Cookies
+            <label class="switch">
+              <input type="checkbox" checked disabled />
+              <span class="slider"></span>
+            </label>
+          </h3>
+          <p>
+            These cookies are necessary for the website to function and cannot
+            be switched off. They are usually set in response to actions you
+            take such as logging in or filling in forms.
+          </p>
+        </div>
 
-        // Accept Cookies
-        acceptBtn.addEventListener("click", function () {
-          localStorage.setItem("cookieConsent", "accepted");
-          C360A.push(["setConsent", { consentGranted: true }]); // Salesforce consent method
-          initializeEvergage(); // Start tracking after consent
-          consentBox.classList.add("hidden");
-        });
+        <div class="cookie-category">
+          <h3>
+            Analytics Cookies
+            <label class="switch">
+              <input type="checkbox" id="analyticsToggle" />
+              <span class="slider"></span>
+            </label>
+          </h3>
+          <p>
+            These cookies allow us to count visits and traffic sources so we can
+            measure and improve the performance of our site. They help us to
+            know which pages are the most and least popular.
+          </p>
+        </div>
 
-        // Reject Cookies
-        rejectBtn.addEventListener("click", function () {
-          localStorage.setItem("cookieConsent", "rejected");
-          C360A.push(["setConsent", { consentGranted: false }]); // Disable tracking
-          consentBox.classList.add("hidden");
-        });
-      });
-    </script>
+        <div class="cookie-category">
+          <h3>
+            Salesforce Personalization Cookies
+            <label class="switch">
+              <input type="checkbox" id="personalizationToggle" />
+              <span class="slider"></span>
+            </label>
+          </h3>
+          <p>
+            These cookies are used to enable Salesforce personalization features
+            on our website. They help us deliver tailored content and
+            experiences based on your previous interactions.
+          </p>
+        </div>
+
+        <div class="button-group">
+          <button class="button secondary-button" id="savePreferencesButton">
+            Save Preferences
+          </button>
+          <button class="button primary-button" id="acceptAllPreferencesButton">
+            Accept All
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cookie Settings Button -->
+    <button class="cookie-settings-button" id="cookieSettingsButton">🍪</button>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+      Preferences saved successfully!
+    </div>
+
+    <script
+      type="text/javascript"
+      src="cookie.js"
+    ></script>
   </body>
 </html>
