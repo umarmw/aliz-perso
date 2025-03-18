@@ -245,14 +245,9 @@
       }
     </style>
     <script
-        type="text/javascript"
-        src="//cdn.evgnet.com/beacon/hangarworldwide/engage/scripts/evergage.min.js"
+      type="text/javascript"
+      src="//cdn.evgnet.com/beacon/hangarworldwide/engage/scripts/evergage.min.js"
     ></script>
-
-    <script>
-        console.log(window.Evergage);
-        console.log(window.sfmcInteractionStudio);
-    </script>
   </head>
   <body>
     <header>
@@ -433,20 +428,5 @@
         </p>
       </div>
     </footer>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        document
-          .getElementById("myButton")
-          ?.addEventListener("click", function () {
-            Evergage.sendEvent({
-              action: "ButtonClick",
-              attributes: {
-                name: "CTA Button",
-              },
-            });
-            console.log("ButtonClick event sent!");
-          });
-      });
-    </script>
   </body>
 </html>
