@@ -19,6 +19,7 @@
           <a href="#coverage">Coverage</a>
           <a href="#testimonials">Reviews</a>
           <a href="#contact">Contact</a>
+          <button id="openLogin" class="login-btn">Login</button>
         </nav>
       </div>
     </header>
@@ -283,9 +284,22 @@
       Preferences saved successfully!
     </div>
 
-    <script
-      type="text/javascript"
-      src="cookie.js"
-    ></script>
+    <!-- Pop-in Modal -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <h2>Login</h2>
+        <label>Email:</label>
+        <input type="email" id="email" required />
+
+        <label>Password:</label>
+        <input type="password" id="password" required />
+
+        <button id="submitLogin" class="submit-btn">Submit</button>
+        <button id="closeLogin" class="cancel-btn">Cancel</button>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="cookie.js"></script>
+    <script type="text/javascript" src="login.js"></script>
   </body>
 </html>
